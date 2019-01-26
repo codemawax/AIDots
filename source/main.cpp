@@ -29,9 +29,24 @@ void Update(Dot& dot)
     }
 }
 
-void Draw(Dot& dot)
+void Draw(sf::RenderWindow& window, Dot& dot)
 {
+    while (isRunning)
+    {
+        window.clear(sf::Color::White);
+        dot.Draw(window);
+        window.display();
+    }
+}
+
+int main()
+{
+    Dot dot(sf::Vector2f(400.f, 400.f), 5.f, sf::Color::Red);
     sf::RenderWindow window(sf::VideoMode(800, 800), "AIDots");
+    window.setActive(false);
+
+    std::thread drawThread(Draw, std::ref(window), std::ref(dot));
+    std::thread updateThread(Update, std::ref(dot));
 
     while (window.isOpen())
     {
@@ -44,22 +59,10 @@ void Draw(Dot& dot)
                 isRunning = false;
             }
         }
-
-        window.clear(sf::Color::White);
-        dot.Draw(window);
-        window.display();
     }
-}
 
-int main()
-{
-    Dot dot(sf::Vector2f(400.f, 400.f), 5.f, sf::Color::Red);
-
-    std::thread drawThread(Draw, std::ref(dot));
-    std::thread updateThread(Update, std::ref(dot));
-
-    drawThread.join();
     updateThread.join();
+    drawThread.join();
 
     return 0;
 }
