@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{a704d6a3-fbb0-4080-9438-7cda6f053990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\objects">
+      <UniqueIdentifier>{f6508b16-fd86-4125-ba94-602b302f40fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\graphics">
+      <UniqueIdentifier>{e6a6e2d4-2f9e-4e0e-a6ad-153ea77281ab}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\objects\Dot.cpp">
+      <Filter>source\objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\objects\Dot.h">
+      <Filter>source\objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
