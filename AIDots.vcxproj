@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\objects\Dot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Application.h" />
     <ClInclude Include="source\objects\Dot.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

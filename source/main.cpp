@@ -3,50 +3,37 @@
 #include <thread>
 #include <iostream>
 
-#include "objects/Dot.h"
+#include "Application.h"
 
 bool isRunning{ true };
 
-void Update(Dot& dot)
+void Update(Application& app)
 {
-    sf::Clock clock;
-    sf::Time lastUpdateTime;
-
     while (isRunning)
     {
-        sf::Time currentTime = clock.getElapsedTime();
-        
-        if (currentTime.asMilliseconds() - lastUpdateTime.asMilliseconds() > 25)
-        {
-            float distanceRatio{ 10.f };
-            float xMove{ (2.f * static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) - 1.f };
-            float yMove{ (2.f * static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) - 1.f };
-            sf::Vector2f move(xMove * distanceRatio, yMove * distanceRatio);
-            dot.Move(sf::Vector2f(move));
-
-            lastUpdateTime = currentTime;
-        }
+        app.Update();
     }
 }
 
-void Draw(sf::RenderWindow& window, Dot& dot)
+void Draw(sf::RenderWindow& window, Application& app)
 {
     while (isRunning)
     {
         window.clear(sf::Color::White);
-        dot.Draw(window);
+        app.Draw(window);
         window.display();
     }
 }
 
 int main()
 {
-    Dot dot(sf::Vector2f(400.f, 400.f), 5.f, sf::Color::Red);
+    Application app;
+
     sf::RenderWindow window(sf::VideoMode(800, 800), "AIDots");
     window.setActive(false);
 
-    std::thread drawThread(Draw, std::ref(window), std::ref(dot));
-    std::thread updateThread(Update, std::ref(dot));
+    std::thread drawThread(Draw, std::ref(window), std::ref(app));
+    std::thread updateThread(Update, std::ref(app));
 
     while (window.isOpen())
     {

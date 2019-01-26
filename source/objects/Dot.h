@@ -9,9 +9,11 @@ public:
     Dot(sf::Vector2f position, float radius, sf::Color color);
     ~Dot();
     void Draw(sf::RenderWindow& window);
-    void Move(sf::Vector2f move);
+    void Update();
 
 private:
+    void Move(sf::Vector2f move);
+
     std::mutex mutex;
     sf::Shape* shape;
 };

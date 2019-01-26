@@ -18,10 +18,16 @@
     <ClCompile Include="source\objects\Dot.cpp">
       <Filter>source\objects</Filter>
     </ClCompile>
+    <ClCompile Include="source\Application.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\objects\Dot.h">
       <Filter>source\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Application.h">
+      <Filter>source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
