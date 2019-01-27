@@ -10,6 +10,9 @@
     <Filter Include="source\graphics">
       <UniqueIdentifier>{e6a6e2d4-2f9e-4e0e-a6ad-153ea77281ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\utilities">
+      <UniqueIdentifier>{189916c0-3d11-4c1b-8d1b-b3c32fffe68f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -21,6 +24,12 @@
     <ClCompile Include="source\Application.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\objects\Brain.cpp">
+      <Filter>source\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\utilities\RandomGenerator.cpp">
+      <Filter>source\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\objects\Dot.h">
@@ -28,6 +37,15 @@
     </ClInclude>
     <ClInclude Include="source\Application.h">
       <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\objects\Brain.h">
+      <Filter>source\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Utils.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utilities\RandomGenerator.h">
+      <Filter>source\utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

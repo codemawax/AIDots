@@ -1,9 +1,7 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <thread>
-#include <iostream>
-
 #include "Application.h"
+
+#include "Utils.h"
+#include <thread>
 
 bool isRunning{ true };
 
@@ -15,11 +13,11 @@ void Update(Application& app)
     }
 }
 
-void Draw(sf::RenderWindow& window, Application& app)
+void Draw(RenderWindow& window, Application& app)
 {
     while (isRunning)
     {
-        window.clear(sf::Color::White);
+        window.clear(Color::White);
         app.Draw(window);
         window.display();
     }
@@ -29,18 +27,18 @@ int main()
 {
     Application app;
 
-    sf::RenderWindow window(sf::VideoMode(800, 800), "AIDots");
+    RenderWindow window(VideoMode(800, 800), "AIDots");
     window.setActive(false);
 
-    std::thread drawThread(Draw, std::ref(window), std::ref(app));
-    std::thread updateThread(Update, std::ref(app));
+    thread drawThread(Draw, ref(window), ref(app));
+    thread updateThread(Update, ref(app));
 
     while (window.isOpen())
     {
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == Event::Closed)
             {
                 window.close();
                 isRunning = false;

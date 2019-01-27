@@ -1,10 +1,15 @@
 #include "Dot.h"
 
-Dot::Dot(sf::Vector2f position, float radius, sf::Color color)
+#include "Brain.h"
+#include <algorithm>
+
+Dot::Dot(Vector2f position, float radius, Color color)
 {
-    shape = new sf::CircleShape(radius);
+    shape = new CircleShape(radius);
     shape->setFillColor(color);
     shape->setPosition(position);
+
+    brain = new Brain(STEP_NUMBER);
 }
 
 Dot::~Dot()
@@ -12,26 +17,49 @@ Dot::~Dot()
     delete(shape);
 }
 
-void Dot::Draw(sf::RenderWindow& window)
+void Dot::Draw(RenderWindow& window)
 {
-    mutex.lock();
+    dotMutex.lock();
     window.draw(*shape);
-    mutex.unlock();
+    dotMutex.unlock();
 }
 
 void Dot::Update()
 {
-    float distanceRatio{ 1.f };
-    float xMove{ (2.f * static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) - 1.f };
-    float yMove{ (2.f * static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) - 1.f };
-    sf::Vector2f move(xMove * distanceRatio, yMove * distanceRatio);
-    Move(sf::Vector2f(move));
+    if (currentStep < STEP_NUMBER)
+    {
+        Vector2f acceleration = brain->GetAccelerationAtStep(currentStep);
+        speed += acceleration;
+        float maxSpeed{ 4.f };
+
+        // need to fix std::clamp
+        if (speed.x > maxSpeed)
+        {
+            speed.x = maxSpeed;
+        }
+        if (speed.y > maxSpeed)
+        {
+            speed.y = maxSpeed;
+        }
+        if (speed.x < -maxSpeed)
+        {
+            speed.x = -maxSpeed;
+        }
+        if (speed.y < -maxSpeed)
+        {
+            speed.y = -maxSpeed;
+        }
+
+        Move(speed);
+
+        currentStep++;
+    }
 }
 
-void Dot::Move(sf::Vector2f move)
+void Dot::Move(Vector2f move)
 {
-    sf::Vector2f position{ shape->getPosition() };
-    mutex.lock();
+    Vector2f position{ shape->getPosition() };
+    dotMutex.lock();
     shape->setPosition(position + move);
-    mutex.unlock();
+    dotMutex.unlock();
 }

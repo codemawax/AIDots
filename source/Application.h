@@ -1,6 +1,6 @@
-#include <vector>
-#include <memory>
+#pragma once
 
+#include <memory>
 #include "objects/Dot.h"
 
 namespace sf

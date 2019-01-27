@@ -3,10 +3,10 @@
 Application::Application()
 {
     sf::Vector2f initialPosition(400.f, 400.f);
-    float radius{ 5.f };
+    float radius{ 2.f };
     sf::Color color{ sf::Color::Red };
 
-    for (unsigned int i = 0; i < 100; ++i)
+    for (unsigned int i = 0; i < 1000; ++i)
     {
         dots.push_back(std::unique_ptr<Dot>(new Dot(initialPosition, radius, color)));
     }

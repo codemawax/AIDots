@@ -1,20 +1,27 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "../Utils.h"
 #include <mutex>
+
+class Brain;
 
 class Dot
 {
 public:
-    Dot(sf::Vector2f position, float radius, sf::Color color);
+    Dot(Vector2f position, float radius, Color color);
     ~Dot();
-    void Draw(sf::RenderWindow& window);
+    void Draw(RenderWindow& window);
     void Update();
 
 private:
-    void Move(sf::Vector2f move);
+    void Move(Vector2f move);
 
-    std::mutex mutex;
-    sf::Shape* shape;
+    Vector2f speed{};
+    mutex dotMutex;
+    Shape* shape;
+    Brain* brain;
+    uint currentStep{};
+
+    const uint STEP_NUMBER{400};
 };
 
