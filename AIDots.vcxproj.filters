@@ -30,6 +30,15 @@
     <ClCompile Include="source\utilities\RandomGenerator.cpp">
       <Filter>source\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="source\objects\Collider.cpp">
+      <Filter>source\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\objects\CircleCollider.cpp">
+      <Filter>source\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\objects\RectCollider.cpp">
+      <Filter>source\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\objects\Dot.h">
@@ -46,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="source\utilities\RandomGenerator.h">
       <Filter>source\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="source\objects\Collider.h">
+      <Filter>source\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\objects\CircleCollider.h">
+      <Filter>source\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="source\objects\RectCollider.h">
+      <Filter>source\objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,6 +12,8 @@ public:
     ~Dot();
     void Draw(RenderWindow& window);
     void Update();
+    inline bool IsAlive() { return alive; }
+    void CalculateFitness();
 
 private:
     void Move(Vector2f move);
@@ -21,6 +23,10 @@ private:
     Shape* shape;
     Brain* brain;
     uint currentStep{};
+    bool alive{true};
+    bool hasReachedGoal{};
+    float fitness{};
+    Vector2f goal{ 400.f, 0.f };
 
     const uint STEP_NUMBER{400};
 };

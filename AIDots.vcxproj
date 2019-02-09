@@ -22,13 +22,19 @@
     <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\objects\Brain.cpp" />
+    <ClCompile Include="source\objects\CircleCollider.cpp" />
+    <ClCompile Include="source\objects\Collider.cpp" />
     <ClCompile Include="source\objects\Dot.cpp" />
+    <ClCompile Include="source\objects\RectCollider.cpp" />
     <ClCompile Include="source\utilities\RandomGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application.h" />
     <ClInclude Include="source\objects\Brain.h" />
+    <ClInclude Include="source\objects\CircleCollider.h" />
+    <ClInclude Include="source\objects\Collider.h" />
     <ClInclude Include="source\objects\Dot.h" />
+    <ClInclude Include="source\objects\RectCollider.h" />
     <ClInclude Include="source\utilities\RandomGenerator.h" />
     <ClInclude Include="source\Utils.h" />
   </ItemGroup>

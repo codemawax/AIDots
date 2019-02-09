@@ -19,6 +19,11 @@ void Application::Update()
     if (currentTime.asMilliseconds() - lastUpdateTime.asMilliseconds() > 10)
     {
         UpdateDots();
+        if (areAllDotsDead)
+        {
+
+        }
+
         lastUpdateTime = currentTime;
     }
 }
@@ -36,11 +41,30 @@ void Application::Draw(sf::RenderWindow& window)
 
 void Application::UpdateDots()
 {
+    areAllDotsDead = true;
     for (auto& dot : dots)
     {
         if (dot)
         {
             dot.get()->Update();
+            if (areAllDotsDead && dot.get()->IsAlive())
+            {
+                areAllDotsDead = false;
+            }
         }
     }
+}
+
+void Application::CreateNewGeneration()
+{
+    generationCount++;
+    for (auto& dot : dots)
+    {
+        if (dot)
+        {
+            dot.get()->CalculateFitness();
+        }
+    }
+    // select
+    // mutate
 }

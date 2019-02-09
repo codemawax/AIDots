@@ -13,13 +13,18 @@ class Application
 public:
     Application();
     void Update();
-    void Draw(sf::RenderWindow& window);
+    void Draw(RenderWindow& window);
 
 private:
     void UpdateDots();
+    void CreateNewGeneration();
 
-    std::vector<std::unique_ptr<Dot>> dots;
+    vector<unique_ptr<Dot>> dots;
 
-    sf::Clock clock;
-    sf::Time lastUpdateTime;
+    Clock clock;
+    Time lastUpdateTime;
+
+    uint generationCount{};
+
+    bool areAllDotsDead{};
 };

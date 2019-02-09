@@ -26,8 +26,27 @@ void Dot::Draw(RenderWindow& window)
 
 void Dot::Update()
 {
-    if (currentStep < STEP_NUMBER)
+    if (alive)
     {
+        if (currentStep < STEP_NUMBER)
+        {
+            alive = false;
+            return;
+        }
+
+        // need to fix std::clamp
+        auto position{ shape->getPosition() };
+        if (position.x < 0 || position.x >= 700)
+        {
+            alive = false;
+            return;
+        }
+        if (position.y < 0 || position.y >= 700)
+        {
+            alive = false;
+            return;
+        }
+
         Vector2f acceleration = brain->GetAccelerationAtStep(currentStep);
         speed += acceleration;
         float maxSpeed{ 4.f };
@@ -60,6 +79,13 @@ void Dot::Move(Vector2f move)
 {
     Vector2f position{ shape->getPosition() };
     dotMutex.lock();
-    shape->setPosition(position + move);
+    Vector2f newPosition{ position + move };
+    shape->setPosition(newPosition);
     dotMutex.unlock();
+}
+
+void Dot::CalculateFitness()
+{
+    float distanceToGoal{ GetDistance(shape->getPosition(), goal) };
+    fitness = 1.f / pow(distanceToGoal, 2.f);
 }
